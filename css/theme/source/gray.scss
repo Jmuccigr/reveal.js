@@ -1,0 +1,114 @@
+/**
+ * Gray theme for reveal.js.
+ *
+ * John Muccigrosso 2016, based on themes by Hakim El Hattab, http://hakim.se
+ */
+
+
+// Default mixins and settings -----------------
+@import "../template/mixins";
+@import "../template/settings";
+// ---------------------------------------------
+
+
+
+// Override theme settings (see ../template/settings.scss)
+$mainFontSize: 36px;
+$mainFont: 'Georgia', serif;
+$mainColor: #333;
+
+$headingFont: 'Helvetica', sans-serif;
+$headingColor: #333;
+$headingLetterSpacing: -0.02em;
+$heading1TextShadow: 3px 3px 10px rgba(0,0,0,0.3);
+$headingTextShadow: none;
+$headingTextTransform: capitalize;
+
+$heading1Size: 4.0em;
+$heading2Size: 3.0em;
+$heading3Size: 1.9em;
+$heading4Size: 1.0em;
+
+$linkColor: darkblue;
+$linkColorHover: lighten( $linkColor, 20% );
+
+$selectionBackgroundColor: blue;
+
+
+// Fix links so they are not cut off
+.reveal a {
+	line-height: 1.3em;
+}
+
+// Background generator
+@mixin bodyBackground() {
+	@include radial-gradient( lightgray, white );
+}
+
+
+
+// Theme template ------------------------------
+@import "../template/theme";
+// ---------------------------------------------
+
+// Override them to have all these be circles
+.reveal ul {
+	list-style-type: circle;
+	
+	& ul {list-style-type: circle;
+
+		& ul {list-style-type: circle;
+
+			& ul {list-style-type: circle;
+			}
+		}
+	}
+}
+
+
+// Tweak the blockquote to remove the box and shrink the font a bit.
+.reveal blockquote {
+	box-shadow: none;
+	font-size: .9 * $mainFontSize;
+}
+
+// Put in space + quotation mark
+.reveal blockquote p:before {
+	content: '\00AB\00A0';
+}
+
+.reveal blockquote p:after {
+	content: '\00A0\00BB';
+}
+
+
+// 
+.reveal h1 {
+	font-variant: small-caps;
+}
+
+.reveal h3, h4, h5, h6 {
+	padding-top: .5em;
+}
+
+// This is for pandoc-created output, which creates h1 slide titles.
+.reveal section.level2 h1 {
+	font-size: $heading2Size;
+}
+
+.reveal code, .reveal .lineNumbers pre {
+	background: #eeeeee;
+}
+
+.reveal a:hover {
+	background: lighten( $linkColor, 70% );
+}
+
+.reveal caption {
+	font-size: .8 * $mainFontSize;
+	font-style: italic;
+}
+
+.reveal .author {
+	padding-top: .5em;
+}
