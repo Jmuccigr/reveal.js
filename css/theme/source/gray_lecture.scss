@@ -34,7 +34,7 @@ $heading1FontVariant: small-caps;
 $linkColor: #444;
 $linkColorHover: lighten( $linkColor, 40% );
 
-$selectionBackgroundColor: "Source Sans Pro", Helvetica, sans-serif;
+$selectionBackgroundColor:  $linkColorHover;
 
 // Fix links so they are not cut off
 .reveal a {
@@ -114,6 +114,10 @@ $selectionBackgroundColor: "Source Sans Pro", Helvetica, sans-serif;
   font-family: monospace;
 }
 
+.reveal a {
+    border-bottom: thin dotted $linkColor;
+}
+
 .reveal a:hover {
 	background: lighten( $linkColor, 70% );
 }
@@ -132,6 +136,10 @@ $selectionBackgroundColor: "Source Sans Pro", Helvetica, sans-serif;
 }
 
 // Trying to get full-screen images
+
+.reveal figure, .reveal section {
+    height:  inherit;
+}
 
 //1. Make canvas bigger. See https://github.com/hakimel/reveal.js/issues/638
 .reveal .slides {
@@ -152,8 +160,8 @@ $selectionBackgroundColor: "Source Sans Pro", Helvetica, sans-serif;
 }
 
 .reveal img, .reveal video, .reveal iframe {
-  max-width: 100%;
   max-height: 100%;
+  height: 100%;
 }
 
 //3. Wide image that always fits

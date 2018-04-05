@@ -27,12 +27,12 @@ body {
 
 ::selection {
   color: #fff;
-  background: "Source Sans Pro", Helvetica, sans-serif;
+  background: #aaaaaa;
   text-shadow: none; }
 
 ::-moz-selection {
   color: #fff;
-  background: "Source Sans Pro", Helvetica, sans-serif;
+  background: #aaaaaa;
   text-shadow: none; }
 
 .reveal .slides > section,
@@ -310,6 +310,9 @@ body {
 .reveal code {
   font-family: monospace; }
 
+.reveal a {
+  border-bottom: thin dotted #444; }
+
 .reveal a:hover {
   background: #f7f6f6; }
 
@@ -322,6 +325,9 @@ body {
 
 .reveal .controls {
   background-color: rgba(68, 68, 68, 0.15); }
+
+.reveal figure, .reveal section {
+  height: inherit; }
 
 .reveal .slides {
   width: 100%;
@@ -337,8 +343,8 @@ body {
   margin: 0; }
 
 .reveal img, .reveal video, .reveal iframe {
-  max-width: 100%;
-  max-height: 100%; }
+  max-height: 100%;
+  height: 100%; }
 
 .reveal figure img {
   box-shadow: none;
