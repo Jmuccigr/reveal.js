@@ -1,0 +1,250 @@
+/**
+ * Gray lecture theme for reveal.js maximal image size.
+ *
+ * John Muccigrosso 2016, based on themes by Hakim El Hattab, http://hakim.se
+ */
+
+
+// Default mixins and settings -----------------
+@import "../template/mixins";
+@import "../template/settings";
+// ---------------------------------------------
+
+
+
+// Override theme settings (see ../template/settings.scss)
+$mainFontSize: 24pt;
+$mainFont: "Source Sans Pro", Helvetica, sans-serif;
+$mainColor: #333;
+
+$headingColor: #333;
+$headingLetterSpacing: -0.02em;
+$headingTextShadow: none;
+$headingTextTransform: uppercase;
+$headingFont: $mainFont;
+$heading1Size: 3.5em;
+$heading2Size: 3.0em;
+$heading3Size: 1.9em;
+$heading4Size: 1.0em;
+
+$heading1TextShadow: 3px 3px 10px rgba(0,0,0,0.3);
+$heading1TextTransform: none;
+$heading1FontVariant: small-caps;
+
+$linkColor: #444;
+$linkColorHover: lighten( $linkColor, 40% );
+
+$selectionBackgroundColor: "Source Sans Pro", Helvetica, sans-serif;
+
+// Fix links so they are not cut off
+.reveal a {
+	line-height: 1.3em;
+}
+
+// Background generator
+@mixin bodyBackground() {
+	@include radial-gradient( lightgray, white );
+}
+
+
+
+// Theme template ------------------------------
+@import "../template/theme";
+// ---------------------------------------------
+
+.reveal p {
+  display: block;
+  margin: .5em;
+  height: auto;
+}
+
+// Override them to have all these be circles
+.reveal ul {
+	list-style-type: disc;
+
+	& ul {list-style-type: disc;
+
+		& ul {list-style-type: circle;
+
+			& ul {list-style-type: circle;
+			}
+		}
+	}
+}
+
+
+// Tweak the blockquote to remove the box and shrink the font a bit.
+.reveal blockquote {
+	box-shadow: none;
+	font-size: .9 * $mainFontSize;
+}
+
+// Put in space + quotation mark
+.reveal blockquote p:before {
+	content: '\00AB\00A0';
+}
+
+.reveal blockquote p:after {
+	content: '\00A0\00BB';
+}
+
+//
+.reveal h1 {
+	font-variant: small-caps;
+}
+
+.reveal h3, h4, h5, h6 {
+	padding-top: .5em;
+}
+
+.reveal h1, .reveal h2, .reveal h3, .reveal h4, .reveal h5, .reveal h6, .reveal li {
+	height: auto;
+}
+
+// This is for pandoc-created output, which creates h1 slide titles.
+.reveal section.level2 h1 {
+	font-size: $heading2Size;
+}
+
+.reveal code, .reveal .lineNumbers pre {
+	background: #eeeeee;
+}
+
+.reveal code {
+  font-family: monospace;
+}
+
+.reveal a:hover {
+	background: lighten( $linkColor, 70% );
+}
+
+.reveal caption {
+	font-size: .8 * $mainFontSize;
+	font-style: italic;
+}
+
+.reveal .author {
+	padding-top: .5em;
+}
+
+.reveal .controls {
+	background-color: rgba($linkColor, 0.15);
+}
+
+// Trying to get full-screen images
+
+//1. Make canvas bigger. See https://github.com/hakimel/reveal.js/issues/638
+.reveal .slides {
+	width: 100%;
+	height: 100%;
+	top: 0;
+	margin-top: 0;
+}
+
+//2. Remove padding so images reach top & bottom edges
+.reveal .slides > section {
+  padding: 0;
+}
+
+.reveal section img {
+  border: none;
+  margin: 0;
+}
+
+.reveal img, .reveal video, .reveal iframe {
+  max-width: 100%;
+  max-height: 100%;
+}
+
+//3. Wide image that always fits
+.reveal figure img {
+  box-shadow: none;
+  max-width: 100%;
+  object-fit: contain;
+}
+
+//4. Hide caption. Show on top of image via hover.
+.reveal figcaption {
+	display: block;
+	position: absolute;
+	margin: auto;
+	width: 96%;
+	left: 0;
+	text-align: center;
+	bottom: 1em;
+	height: auto;
+	background-color: white;
+	color: black;
+	font-size: smaller;
+	padding-left: 2%;
+	padding-right: 2%;
+	opacity: 0;
+}
+
+.reveal figcaption:hover {
+  opacity: .9;
+}
+
+// pandoc's header fields
+
+p.subtitle, p.author, p.institution, p.date {
+  text-shadow: 3px 3px 10px rgba(0, 0, 0, 0.3);
+}
+
+p.author, p.institution, p.date {
+  color: #555555;
+  margin: 5px 0;
+}
+
+p.subtitle {
+  font-size: 1.9em;
+}
+
+p.author {
+  font-size: 1.1em;
+}
+
+p.institution {
+  font-size: .9em;
+}
+
+p.date {
+  font-size: .7em;
+}
+
+// Bonus stuff
+
+// Split references at end into 3 columns to help fit.
+div#refs {
+  column-count: 3;
+}
+
+// Also shrink reference text
+#refs  p {
+  text-align: left;
+  font-size: small;
+  padding: 0 5% 0 5%;
+}
+
+.big {
+  font-size: 164pt !important;
+}
+
+.reveal sup {
+  vertical-align: super;
+}
+
+.reveal sub {
+  vertical-align: sub;
+}
+
+.reveal small {
+  display: inline-block;
+  font-size: 0.6em;
+  line-height: 1.2em;
+  vertical-align: top;
+}
+
+.reveal small * {
+  vertical-align: top;
+}
