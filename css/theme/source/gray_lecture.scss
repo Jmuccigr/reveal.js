@@ -151,7 +151,7 @@ $selectionBackgroundColor:  $linkColorHover;
 }
 
 //2. Remove padding so images reach top & bottom edges
-.reveal .slides > section,
+.reveal .slides section,
 .reveal .slides section > section {
   padding: 0;
 }
