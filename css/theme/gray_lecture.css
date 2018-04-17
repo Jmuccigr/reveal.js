@@ -35,8 +35,8 @@ body {
   background: #aaaaaa;
   text-shadow: none; }
 
-.reveal .slides > section,
-.reveal .slides > section > section {
+.reveal .slides section,
+.reveal .slides section > section {
   line-height: 1.3;
   font-weight: inherit; }
 
@@ -55,7 +55,7 @@ body {
   font-weight: normal;
   line-height: 1.2;
   letter-spacing: -0.02em;
-  text-transform: uppercase;
+  text-transform: none;
   text-shadow: none;
   word-wrap: break-word; }
 
@@ -284,7 +284,8 @@ body {
 
 .reveal blockquote {
   box-shadow: none;
-  font-size: 21.6pt; }
+  font-size: 21.6pt;
+  width: 85%; }
 
 .reveal blockquote p:before {
   content: '\00AB\00A0'; }
@@ -335,7 +336,8 @@ body {
   top: 0;
   margin-top: 0; }
 
-.reveal .slides > section {
+.reveal .slides > section,
+.reveal .slides section > section {
   padding: 0; }
 
 .reveal section img {

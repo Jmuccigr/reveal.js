@@ -20,7 +20,7 @@ $mainColor: #333;
 $headingColor: #333;
 $headingLetterSpacing: -0.02em;
 $headingTextShadow: none;
-$headingTextTransform: uppercase;
+$headingTextTransform: none;
 $headingFont: $mainFont;
 $heading1Size: 3.5em;
 $heading2Size: 3.0em;
@@ -77,6 +77,7 @@ $selectionBackgroundColor:  $linkColorHover;
 .reveal blockquote {
 	box-shadow: none;
 	font-size: .9 * $mainFontSize;
+	width: 85%;
 }
 
 // Put in space + quotation mark
@@ -150,7 +151,8 @@ $selectionBackgroundColor:  $linkColorHover;
 }
 
 //2. Remove padding so images reach top & bottom edges
-.reveal .slides > section {
+.reveal .slides > section,
+.reveal .slides section > section {
   padding: 0;
 }
 
