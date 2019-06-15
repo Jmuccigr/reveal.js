@@ -130,8 +130,8 @@ Reveal.addEventListener( 'ready', function() {
 	QUnit.test( 'Reveal.getSlideBackground', function( assert ) {
 		assert.equal( Reveal.getSlideBackground( 0 ), document.querySelector( '.reveal .backgrounds>.slide-background:first-child' ), 'gets correct first background' );
 		assert.equal( Reveal.getSlideBackground( 1 ), document.querySelector( '.reveal .backgrounds>.slide-background:nth-child(2)' ), 'no v index returns stack' );
-		assert.equal( Reveal.getSlideBackground( 1, 0 ), document.querySelector( '.reveal .backgrounds>.slide-background:nth-child(2) .slide-background:nth-child(1)' ), 'v index 0 returns first vertical child' );
-		assert.equal( Reveal.getSlideBackground( 1, 1 ), document.querySelector( '.reveal .backgrounds>.slide-background:nth-child(2) .slide-background:nth-child(2)' ), 'v index 1 returns second vertical child' );
+		assert.equal( Reveal.getSlideBackground( 1, 0 ), document.querySelector( '.reveal .backgrounds>.slide-background:nth-child(2) .slide-background:nth-child(2)' ), 'v index 0 returns first vertical child' );
+		assert.equal( Reveal.getSlideBackground( 1, 1 ), document.querySelector( '.reveal .backgrounds>.slide-background:nth-child(2) .slide-background:nth-child(3)' ), 'v index 1 returns second vertical child' );
 
 		assert.strictEqual( Reveal.getSlideBackground( 100 ), undefined, 'undefined when out of horizontal bounds' );
 		assert.strictEqual( Reveal.getSlideBackground( 1, 100 ), undefined, 'undefined when out of vertical bounds' );
@@ -262,6 +262,7 @@ Reveal.addEventListener( 'ready', function() {
 
 	QUnit.test( 'Current fragment', function( assert ) {
 		var fragmentSlide = document.querySelector( '#fragment-slides>section:nth-child(1)' );
+		var lastFragmentIndex = [].slice.call( fragmentSlide.querySelectorAll( '.fragment' ) ).pop().getAttribute( 'data-fragment-index' );
 
 		Reveal.slide( 2, 0 );
 		assert.strictEqual( fragmentSlide.querySelectorAll( '.fragment.current-fragment' ).length, 0, 'no current fragment at index -1' );
@@ -274,6 +275,10 @@ Reveal.addEventListener( 'ready', function() {
 
 		Reveal.slide( 3, 0, 0 );
 		assert.strictEqual( fragmentSlide.querySelectorAll( '.fragment.current-fragment' ).length, 0, 'no current fragment when navigating to next slide' );
+
+		Reveal.slide( 2, 1, -1 );
+		Reveal.prev();
+		assert.strictEqual( fragmentSlide.querySelector( '.fragment.current-fragment' ).getAttribute( 'data-fragment-index' ), lastFragmentIndex, 'last fragment is current fragment when returning from future slide' );
 	});
 
 	QUnit.test( 'Stepping through fragments', function( assert ) {
@@ -523,8 +528,8 @@ Reveal.addEventListener( 'ready', function() {
 		var imageSource2 = Reveal.getSlide( 1, 0 ).getAttribute( 'data-background' );
 
 		// check that the images are applied to the background elements
-		assert.ok( Reveal.getSlideBackground( 0 ).style.backgroundImage.indexOf( imageSource1 ) !== -1, 'data-background-image worked' );
-		assert.ok( Reveal.getSlideBackground( 1, 0 ).style.backgroundImage.indexOf( imageSource2 ) !== -1, 'data-background worked' );
+		assert.ok( Reveal.getSlideBackground( 0 ).querySelector( '.slide-background-content' ).style.backgroundImage.indexOf( imageSource1 ) !== -1, 'data-background-image worked' );
+		assert.ok( Reveal.getSlideBackground( 1, 0 ).querySelector( '.slide-background-content' ).style.backgroundImage.indexOf( imageSource2 ) !== -1, 'data-background worked' );
 	});
 
 
